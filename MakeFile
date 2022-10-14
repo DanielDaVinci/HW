@@ -1,0 +1,23 @@
+all: clean Board.o Domino.o Player.o Human.o Computer.o History.o
+	g++ main.cpp Board.o Domino.o Player.o Human.o Computer.o History.o
+
+Board.o: Domino.o History.o
+	g++ -c Headers/Board.h Sources/Board.cpp
+
+Domino.o:
+	g++ -c Headers/Domino.h Sources/Domino.cpp
+
+Player.o: Domino.o
+	g++ -c Headers/Player.h Sources/Player.cpp
+
+Human.o: Player.o
+	g++ -c Headers/Human.h Sources/Human.cpp
+
+Computer.o: Player.o History.o
+	g++ -c Headers/Computer.h Sources/Computer.cpp
+
+History.o:
+	g++ -c Headers/History.h Sources/History.cpp
+
+clean:
+	rm -rf *.o ./a.out
